@@ -1,4 +1,4 @@
-package ru.yandex.practicum.client.model;
+package ru.yandex.practicum.model;
 
 public class Courier {
     private String login;
@@ -10,8 +10,6 @@ public class Courier {
         this.password = password;
         this.firstName = firstName;
     }
-
-    public Courier() {}
 
     public String getLogin() {
         return login;
@@ -37,4 +35,12 @@ public class Courier {
         this.firstName = firstName;
     }
 
+    @Override
+    public String toString() {
+        return "Courier{" +
+                "login='" + login + '\'' +
+                ", password='" + password + '\'' +
+                ", firstName='" + firstName + '\'' +
+                '}';
+    }
 }

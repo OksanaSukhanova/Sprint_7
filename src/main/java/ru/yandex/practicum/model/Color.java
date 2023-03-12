@@ -1,2 +1,6 @@
-package ru.yandex.practicum.model;public enum Color {
+package ru.yandex.practicum.model;
+
+public enum Color {
+    BLACK,
+    GREY
 }

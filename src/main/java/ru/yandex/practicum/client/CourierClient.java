@@ -1,19 +1,36 @@
+package ru.yandex.practicum.client;
+
+import io.qameta.allure.Step;
 import io.restassured.response.ValidatableResponse;
+import ru.yandex.practicum.client.base.ScooterRestClient;
+import ru.yandex.practicum.model.Courier;
+import ru.yandex.practicum.model.CourierCredentials;
 
 import static io.restassured.RestAssured.*;
 
-public class CourierClient {
+public class CourierClient extends ScooterRestClient {
+    private static final String COURIER_URI = ScooterRestClient.BASE_URI + "/courier";
+
+    @Step("Create courier {courier}")
     public ValidatableResponse create(Courier courier) {
-        return given().header("Content-type", "application/json").body(courier)
-                .when().post("/api/v1/courier").then();
+        return given()
+                .spec(getBaseReqSpec())
+                .body(courier)
+                .when().post(COURIER_URI).then();
     }
 
+    @Step("Login as courier {courierCredentials}")
     public ValidatableResponse login(CourierCredentials courierCredentials) {
-        return given().header("Content-type", "application/json").body(courierCredentials)
-                .when().post("/api/v1/courier/login").then();
+        return given()
+                .spec(getBaseReqSpec())
+                .body(courierCredentials)
+                .when().post(COURIER_URI + "/login").then();
     }
 
-    public void delete() {
-
+    @Step("Delete courier by id {id}")
+    public ValidatableResponse delete(int id) {
+        return given()
+                .spec(getBaseReqSpec())
+                .when().delete(COURIER_URI + "/:" + id).then();
     }
 }

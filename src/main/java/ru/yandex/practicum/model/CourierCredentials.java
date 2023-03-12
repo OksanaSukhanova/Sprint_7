@@ -1,4 +1,4 @@
-package ru.yandex.practicum.client.model;
+package ru.yandex.practicum.model;
 
 public class CourierCredentials {
     private String login;
@@ -8,6 +8,10 @@ public class CourierCredentials {
     public CourierCredentials(String login, String password) {
         this.login = login;
         this.password = password;
+    }
+
+    public static CourierCredentials from(Courier courier) {
+        return new CourierCredentials(courier.getLogin(), courier.getPassword());
     }
 
     public String getLogin() {
@@ -24,5 +28,13 @@ public class CourierCredentials {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    @Override
+    public String toString() {
+        return "CourierCredentials{" +
+                "login='" + login + '\'' +
+                ", password='" + password + '\'' +
+                '}';
     }
 }
